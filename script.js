@@ -141,12 +141,19 @@
 
   /* ---------- Scroll state + active link ---------- */
 
+  var toTop = $('#toTop');
+
+  toTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  });
+
   var sections = $$('main section[id]');
   var navLinks = $$('.nav__menu a');
   var ticking  = false;
 
   function onScroll() {
     nav.classList.toggle('is-stuck', window.scrollY > 60);
+    toTop.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.6);
 
     // Highlight whichever section covers the upper third of the viewport.
     var mark = window.scrollY + window.innerHeight / 3;
